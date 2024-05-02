@@ -6,6 +6,8 @@ let bottone = document.getElementById('btn');
 //creo l'event listener al bottone crea quadrati e riporto la funzione crea quadrati
 bottone.addEventListener('click', cicloCreazione,) // -------BONUS 2--------
 
+let displayMode = document.getElementById('mode');
+
 
 
 
@@ -30,12 +32,24 @@ function creaQuadrato(index) {
 function cicloCreazione() {
     // SVUOTO TUTTA LA GRIGLIA AL SECONDO PRESS DEL BOTTONE
     griglia.innerHTML = '';
-
+    // RIMUOVO TUTTE LE CLASSI AGGIUNTE NEI CLICK PRECEDENTI
+    griglia.classList.remove('w-100', 'w-81', 'w-49')
     //CREO UNA VARIABILE PER IL NUMERO DI QUADRATI DA INSERIRE RISPETTO ALLA DIFFICOLTA SCELTA NEL SELECT, ---BONUS 3---
     let numQuadrati = document.getElementById('numQuadrati').value;
+    // AGGIUNGO LA LARGHEZZA ALLA GRIGLIA IN BASE ALLA DIFFICOLTA (NUMERO QUADRATI)
+    if (numQuadrati == 100) {
+        griglia.classList.add('w-100');
+        displayMode.innerHTML = '---Difficolta Easy 100 quadrati---'
+    } else if (numQuadrati == 81) {
+        griglia.classList.add('w-81');
+        displayMode.innerHTML = '---Difficolta Medium 81 quadrati---'
+    } else if (numQuadrati == 49) {
+        griglia.classList.add('w-49');
+        displayMode.innerHTML = '---Difficolta Hard 49 quadrati---'
+    }
 
     console.log(numQuadrati)
-
+    // CREO QUADRATI IN BASE ALLA DIFFICOLTA
     for (let i = 1; i <= numQuadrati; i++) {
         // RIPORTO LA FUNZIONE DI CREAZIONE DEL QUADRATO MA IMPOSTO IL CONTATORE DI CICLO COME INDICE
         creaQuadrato(i);
